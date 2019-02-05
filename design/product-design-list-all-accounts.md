@@ -28,48 +28,75 @@ Images (mocks)
 
 | RES API spec  | content       |
 | ------------- |:-------------:|
-| Request headers     | Content-Type: application/json |
+| Request headers     | --- |
 | Request HTTP method | GET      |
-| Request URL       | /account/list      |
-| Request body       | ---      |
+| Request URL       | /accounts      |
 | Response headers       | Content-Type: application/json     |
-| Response body       | {"data": [{account: "username1", "fullname": "User Name 1",...}]      |
 | Response status code       | 200     |
+
+#### Response body
+
+```json
+{
+    "data": [
+        {
+            "account": "username1",
+            "fullname": "User Name 1"
+        },
+        {
+            "account": "username2",
+            "fullname": "User Name 2"
+        }
+    ];
+}
+```
 
 ### Forms page
-
-#### Showing form
-
-| RES API spec  | content       |
-| ------------- |:-------------:|
-| Request headers     | Content-Type: text/html; charset=utf-8 |
-| Request HTTP method | GET      |
-| Request URL       | /account/new      |
-| Request body       | ---      |
-| Response headers    | Content-Type: text/html; charset=utf-8     |
-| Response body       | `<html>...</html>`      |
-| Response status code       | 200     |
 
 #### Sending form
 
 | RES API spec  | content       |
 | ------------- |:-------------:|
-| Request headers     | Content-Type: multipart/form-data |
+| Request headers     | Content-Type: application/json  |
 | Request HTTP method | POST      |
-| Request URL       | /account/new      |
-| Request body       | `POST /account/new HTTP/1.1 ...`      |
-| Response headers    | Content-Type: text/html; charset=utf-8      |
-| Response body       | `<html>...</html>`      |
-| Response status code       | 200     |
+| Request URL       | /accounts      |
+| Response headers    | Content-Type: application/json  |
+| Response status code       | 201 or 400  |
 
-### Forms page error
+#### Request body
 
-| RES API spec  | content       |
-| ------------- |:-------------:|
-| Request headers     | Content-Type: multipart/form-data |
-| Request HTTP method | POST      |
-| Request URL       | /account/new      |
-| Request body       | `POST /account/new HTTP/1.1 ...`      |
-| Response headers    | Content-Type: text/html; charset=utf-8      |
-| Response body       | `<html>...</html>`      |
-| Response status code       | 400     |
+```json
+{
+    "account": "username1",
+    "fullname": "User Name 1",
+    "password": "password1"
+}
+```
+
+#### Response body success
+
+```json
+{
+    "id": 1,
+    "account": "username1",
+    "fullname": "User Name 1",
+    "password": "password1"
+}
+```
+
+#### Response body error
+
+```json
+{
+    "errors": [
+        {
+            "property": "account",
+            "message": "Maximum 20 charactes allowed"
+        },
+        {
+            "property": "fullname",
+            "message": "Maximum 255 charactes allowed"
+        },
+    ]
+}
+```

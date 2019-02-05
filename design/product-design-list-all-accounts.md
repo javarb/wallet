@@ -24,3 +24,52 @@ Images (mocks)
 
 ## API contract
 
+### List accounts page
+
+| RES API spec  | content       |
+| ------------- |:-------------:|
+| Request headers     | Content-Type: application/json |
+| Request HTTP method | GET      |
+| Request URL       | /account/list      |
+| Request body       | ---      |
+| Response headers       | Content-Type: application/json     |
+| Response body       | {"data": [{account: "username1", "fullname": "User Name 1",...}]      |
+| Response status code       | 200     |
+
+### Forms page
+
+#### Showing form
+
+| RES API spec  | content       |
+| ------------- |:-------------:|
+| Request headers     | Content-Type: text/html; charset=utf-8 |
+| Request HTTP method | GET      |
+| Request URL       | /account/new      |
+| Request body       | ---      |
+| Response headers    | Content-Type: text/html; charset=utf-8     |
+| Response body       | `<html>...</html>`      |
+| Response status code       | 200     |
+
+#### Sending form
+
+| RES API spec  | content       |
+| ------------- |:-------------:|
+| Request headers     | Content-Type: multipart/form-data |
+| Request HTTP method | POST      |
+| Request URL       | /account/new      |
+| Request body       | `POST /account/new HTTP/1.1 ...`      |
+| Response headers    | Content-Type: text/html; charset=utf-8      |
+| Response body       | `<html>...</html>`      |
+| Response status code       | 200     |
+
+### Forms page error
+
+| RES API spec  | content       |
+| ------------- |:-------------:|
+| Request headers     | Content-Type: multipart/form-data |
+| Request HTTP method | POST      |
+| Request URL       | /account/new      |
+| Request body       | `POST /account/new HTTP/1.1 ...`      |
+| Response headers    | Content-Type: text/html; charset=utf-8      |
+| Response body       | `<html>...</html>`      |
+| Response status code       | 400     |

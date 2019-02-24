@@ -49,10 +49,10 @@ class AccountEntry {
 
 #### Table: Account
 
-| Column   | Type     | Key     |  Nullable  |
-| -------- |:--------:|:-------:|:----------:|
-| id       | int(11)  | primary |    No
-| account_name | varchar(20)  |  |  No |
-| fullname | varchar(255)  |  | No  |
+| Column       | Type         | Key     | Nullable |
+| ------------ | ------------ | ------- | -------- |
+| id           | int(11)      | primary | No       |
+| account_name | varchar(20)  |         | No       |
+| fullname     | varchar(255) |         | No       |
 
 **Indexes:** id

@@ -34,7 +34,19 @@ class AccountEntry {
 
 ### New account
 
-**TODO:** Work in this
+Inside the method in controller POST request for a new account:
+
+1. Call `AccountService.newAccount()`
+2. `AccountService.newAccount()` calls 
+
+```java
+class AccountEntry {
+    String account;
+    String fullname;
+}
+```
+
+
 
 - Validate the input
 - Convert the request POJO into an entity to the database

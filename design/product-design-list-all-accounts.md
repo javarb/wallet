@@ -79,7 +79,7 @@ Create Account error minimum characters:
             "account": "username2",
             "fullname": "User Name 2"
         }
-    ];
+    ]
 }
 ```
 

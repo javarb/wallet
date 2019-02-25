@@ -1,3 +1,9 @@
+
+
+
+
+
+
 # LIST AND CREATE ACCOUNTS
 
 ## List accounts
@@ -16,11 +22,37 @@ Finally when we press submit button, if the content provided in the form is vali
 
 ## Wireframes
 
-Images (mocks)
+#### List accounts page
 
-- List accounts page
-- Forms page
-- Forms page error
+![list accounts](wireframes/list-accounts-page.png "List Accounts")
+
+
+
+#### Forms page 
+
+Create Account:
+
+![create accounts](wireframes/form-create-account.png "Create Account")
+
+
+
+#### Forms page error
+
+Create Account error blank:
+
+![create error blank](wireframes/form-create-account-error-blank.png "Create Account error - blank")
+
+Create Account error forbidden characters:
+
+![create error forbidden chars](wireframes/form-create-account-error-forbidden-characters.png "Create Account error - forbidden characters")
+
+Create Account error maximum characters allowed:
+
+![create accounts error maximum](wireframes/form-create-account-error-maximum.png "Create Account error - maximum characters allowed")
+
+Create Account error minimum characters:
+
+![create accounts error minimum](wireframes/form-create-account-error-minimum.png "Create Account error - maximum characters allowed")
 
 ## API contract
 

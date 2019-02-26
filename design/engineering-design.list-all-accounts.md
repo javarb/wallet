@@ -118,7 +118,6 @@ Inside the method in controller POST request for a new account:
        "id": 1,
        "account": "username",
        "fullname": "Full Name",
-       "password": "password"
    }
    ```
 
@@ -132,7 +131,101 @@ Inside the method in controller POST request for a new account:
 
 
 
-POJOS
+##### POJOS
+
+```java
+class Account{
+    Long id;
+    String account;
+    String fullname;
+    String password;
+}
+
+class CreateAccountResponse {
+    Long id;
+    String account;
+    String fullname;    
+}
+
+class CreateAccountRequest {
+    String account;
+    String fullname;
+    String password;    
+}
+```
+
+
+
+##### Controller
+
+```java
+@RestController("/accounts")
+class AccountController {
+    @PostMapping
+    @ResponseStatus(201)
+    public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest account){
+        return accountService.createAccount(account);
+    }
+}
+```
+
+TODO:
+
+- Complete service
+- Complete validator
+- Add missing POJOS
+
+##### Service
+
+```java
+// 1. Validate inputs accountValidator.validate(request)
+// 2. If isn't valid return the error message 
+// 3. If valid, convert request into Account object fields
+// 4. Insert this Account by calling accountRepository.insertAccount(account)
+// 5. Convert Account we get back from accountRepository.insertAccount(account) to CreateAccountResponse and return
+
+```
+
+
+
+##### Validator
+
+```java
+// TODO 
+// fix names
+@Component
+class AccountValidator {
+    
+    boolean validate(Account account) {     
+        
+        if (account.account == ""){
+            jsonAnswer.add("account", "Field cannot be empty");            
+        } else if (account.fullname == "" ) {
+            jsonAnswer.add("account", "Field cannot be empty");
+        } else if (account.password == "") {
+            jsonAnswer.add("account", "Field cannot be empty");
+        } ...
+        
+        return jsonAnswer;
+    }    
+}
+    
+```
+
+
+
+##### Repository
+
+```java
+@Repository
+class AccountRepository {
+    Account insertAccount(Account account){
+        // INSERT INTO accounts(:account_name,:fullname);
+    }
+}
+```
+
+
 
 ```java
 class AccountService {
@@ -154,11 +247,7 @@ class AccountService {
             jsonAnswer.add("account", "Field cannot be empty");
         } ...
         
-        if (ans.isEmpty()){
-            return true;
-        } else {
-            return false
-        }
+        return ans.isEmpty();
     }    
 }
 
@@ -198,6 +287,7 @@ class JsonAnswer {
             
             
 class Account{
+    Long id;
     String account;
     String fullname;
     String password;

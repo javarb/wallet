@@ -80,7 +80,6 @@ Images (mocks)
     "id": 1,
     "account": "username1",
     "fullname": "User Name 1",
-    "password": "password1"
 }
 ```
 

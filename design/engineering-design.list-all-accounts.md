@@ -13,13 +13,13 @@
 
 Inside the method in controller GET request for list accounts:
 
-1. Call `AccountService.listAccounts()`
-1. `AccountService.listAccounts()` returns a list of accounts entries from the database.
+1. Call `AccountService#listAccounts()`
+1. `AccountService#listAccounts()` returns a list of accounts entries from the database.
    1. If there is not any entry, then return a empty list.
    1. Always return first 20 entries.
    1. Service must handle database exceptions.
 
-POJOS
+##### POJOS
 
 ```java
 class ListAccountsResponse {
@@ -31,6 +31,47 @@ class AccountEntry {
     String fullname;
 }
 ```
+
+
+
+##### Controller
+
+```java
+@RestController
+class AccountController {
+    @GetMapping("/accounts")
+    public ListAccountsResponse listAccounts(){
+        return accountService.listAccounts();
+    }
+}
+```
+
+
+
+##### Service
+
+```java
+@Service
+class AccountService {
+    ListAccountsResponse listAccounts() {
+        List<Account> accounts = repository.findAccounts();
+        return convert(accounts);
+    }
+}
+```
+
+##### Repository
+
+```java
+@Repository
+class AccountRepository {
+    List<Account> findAccounts() {
+        // SELECT * FROM accounts LIMIT 20 ORDER BY id DESC;
+    }
+}
+```
+
+
 
 ### New account
 

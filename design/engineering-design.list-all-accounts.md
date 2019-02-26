@@ -34,6 +34,13 @@ class AccountEntry {
 
 ### New account
 
+- Validate the input
+- Convert the request POJO into an entity to the database
+- Store information to the database
+- Be sure the `id` of the created entity is included back to the user
+
+
+
 Inside the method in controller POST request for a new account:
 
 1. Call `AccountService.createAccount(account)`
@@ -88,14 +95,16 @@ POJOS
 
 ```java
 class AccountService {
-    public createAccount(Account account) {
+    private JsonAnswer ans = new JsonAnswer();
+    
+    public JsonAnswer createAccount(Account account) {
         if (validate(account)){
         	AccountModel.save(account);    
-        }    	
+        }         
+        return JsonAnswer();
     }
     
-    public validate(Account account) {
-        ans = new JsonAnswer();
+    public validate(Account account) {        
         if (account.account == ""){
             jsonAnswer.add("account", "Field cannot be empty");            
         } else if (account.fullname == "" ) {
@@ -104,7 +113,7 @@ class AccountService {
             jsonAnswer.add("account", "Field cannot be empty");
         } ...
         
-        if (jsonEmpty){
+        if (ans.isEmpty()){
             return true;
         } else {
             return false
@@ -113,21 +122,23 @@ class AccountService {
 }
 
 class AccountModel {    
-    public Boolean save(Account account) {
-    	wallet = new dbConnector;
-		ans = new JsonAnswer();
-
+    public JsonAnswer save(Account account) {
+    	wallet = new dbConnector();
+        
     	if (wallet.openConnection("MySQL") {
             if (wallet.query(query)) {
-                return jsonAnswer.add(wallet.getID, wallet.getAccount, wallet.getFullname, wallet.getPassword);                                      
+                return ans.add(wallet.getID, 
+                               wallet.getAccount, 
+                               wallet.getFullname, 
+                               wallet.getPassword);
 			} else {                                          
-                return jsonAnswer.add(wallet.getError);
+                return ans.add(wallet.getError);
             }
             
     	}
     }
 }
-
+            
 class dbConnector {
     public class<T> openConnection(String dbms){
         if (connection) {
@@ -137,7 +148,14 @@ class dbConnector {
         }        
     }
 }
-        
+            
+class JsonAnswer {
+    public JsonAnswer(...){
+        ...
+    }                
+}
+            
+            
 class Account{
     String account;
     String fullname;
@@ -147,14 +165,9 @@ class Account{
 
 
 
-- Validate the input
-- Convert the request POJO into an entity to the database
-- Store information to the database
-- Be sure the `id` of the created entity is included back to the user
-
 ## Database
 
-- Use MySQL
+For data storage we're going to use MySQL
 
 ### Schema
 

@@ -112,7 +112,6 @@ Create Account error minimum characters:
     "id": 1,
     "account": "username1",
     "fullname": "User Name 1",
-    "password": "password1"
 }
 ```
 

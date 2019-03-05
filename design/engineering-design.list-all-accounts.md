@@ -190,6 +190,7 @@ TODO:
 class AccountService {
     CreateAccountResponse createAccount(account) {
         ValidationResult result = new accountValidator.validate(account)
+            
         if (!result.isValid()){
         	return invalidRequest(result);
         } else
@@ -213,19 +214,42 @@ class AccountValidator {
         ValidationResult result = new ValidationResult();
         
         if (account.getAccount == ""){
-            result.addError("account", "Field cannot be empty");            
+            result.addError("account", "Field cannot be empty");
+            result.valid = false;
         } else if (account.getFullName == "" ) {
             result.addError("fullname", "Field cannot be empty");
+            result.valid = false;
         } else if (account.getPassword == "") {
             result.addError("password", "Field cannot be empty");
-        } 
-        //...
+            result.valid = false;
+        } else {
+        	result.valid = true;    
+        }
+        
         
         return result;
     }    
     
 } 
 
+@Component
+class ValidationResult {
+    bool valid;
+    
+    bool isValid(){
+        return valid;
+    }
+}
+
+```
+
+##### Converter
+
+```java
+@Component
+class AccountConverter {  
+
+} 
 ```
 
 

@@ -165,8 +165,8 @@ class CreateAccountRequest {
 class AccountController {
     @PostMapping
     @ResponseStatus(201)
-    public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest account){
-        return accountService.createAccount(account);
+    public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest req){
+        return accountService.createAccount(req);
     }
 }
 ```
@@ -188,14 +188,16 @@ TODO:
 
 @Service
 class AccountService {
-    CreateAccountResponse createAccount(account) {
-        ValidationResult result = new accountValidator.validate(account)
+    CreateAccountResponse createAccount(req) {
+        ValidationResult result = new accountValidator.validate(req)
             
         if (!result.isValid()){
-        	return invalidRequest(result);
-        } else            
-            CreateAccountResponse response = accountRepository.insertAccount(accountConverter.convert(account));
-        	return validRequest(response);
+        	return invalidRequest(result);            
+        } 
+        
+        Account account = accountConverter.convert(req);        
+        account = accountRepository.insertAccount(account);        
+       	return accountConverter.convert(account);
     }
 }
 ```
@@ -212,19 +214,23 @@ class AccountValidator {
         
         ValidationResult result = new ValidationResult();
         
-        if (account.getAccount == ""){
+        if (account.getAccount() == ""){
             result.addError("account", "Field cannot be empty");
-        } else if (account.getFullName == "" ) {
+        } 
+        
+        if (account.getFullName() == "" ) {
             result.addError("fullname", "Field cannot be empty");
-        } else if (account.getPassword == "") {
+        } 
+        
+        if (account.getPassword() == "") {
             result.addError("password", "Field cannot be empty");
         }         
+        
         return result;
     }    
     
 } 
 
-@Component
 class ValidationResult extends HashMap<String,String> {        
     boolean isValid(){
         return isEmpty();
@@ -238,7 +244,13 @@ class ValidationResult extends HashMap<String,String> {
 ```java
 @Component
 class AccountConverter {  
-
+    Account convert(CreateAccountRequest req){
+        // Convert to DB object (Entity)
+    }
+    
+    CreateAccountResponse convert(Account){        
+        // Convert DB object to response object
+    } 
 } 
 ```
 
@@ -251,7 +263,6 @@ class AccountConverter {
 class AccountRepository {
     Account insertAccount(Account account){
         // INSERT INTO accounts(:account_name,:fullname);
-        return convert(accounts);
     }
 }
 ```

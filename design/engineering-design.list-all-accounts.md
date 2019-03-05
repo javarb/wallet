@@ -171,11 +171,7 @@ class AccountController {
 }
 ```
 
-TODO:
 
-- Complete service
-- Complete validator
-- Add missing POJOS
 
 ##### Service
 
@@ -238,6 +234,8 @@ class ValidationResult extends HashMap<String,String> {
 }
 
 ```
+
+
 
 ##### Converter
 

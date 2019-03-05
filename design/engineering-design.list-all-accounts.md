@@ -2,7 +2,9 @@
 
 ## Architecture
 
-**TODO:**: Draw a diagram
+![API Architecture](API-Architecture.png "API Architecture")
+
+
 
 - Will be written in Java.
 - Will be written using Spring Framework (Spring web and Spring Boot).

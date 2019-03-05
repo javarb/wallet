@@ -184,6 +184,18 @@ TODO:
 // 4. Insert this Account by calling accountRepository.insertAccount(account)
 // 5. Convert Account we get back from accountRepository.insertAccount(account) to CreateAccountResponse and return
 
+@Service
+class AccountService {
+    CreateAccountResponse createAccount(account) {
+        ValidationResult result = new accountValidator.validate(account)
+        if (!result.isValid()){
+        	return invalidRequest(result);
+        } else
+          	convertedAccount = convert(accounts);
+            CreateAccountResponse response = accountRepository.insertAccount(convertedAccount);
+        	return validRequest(response);
+    }
+}
 ```
 
 
@@ -191,25 +203,27 @@ TODO:
 ##### Validator
 
 ```java
-// TODO 
-// fix names
 @Component
 class AccountValidator {
     
-    boolean validate(Account account) {     
+    ValidationResult validate(Account account) {     
         
-        if (account.account == ""){
-            jsonAnswer.add("account", "Field cannot be empty");            
-        } else if (account.fullname == "" ) {
-            jsonAnswer.add("account", "Field cannot be empty");
-        } else if (account.password == "") {
-            jsonAnswer.add("account", "Field cannot be empty");
-        } ...
+        ValidationResult result = new ValidationResult();
         
-        return jsonAnswer;
+        if (account.getAccount == ""){
+            result.addError("account", "Field cannot be empty");            
+        } else if (account.getFullName == "" ) {
+            result.addError("fullname", "Field cannot be empty");
+        } else if (account.getPassword == "") {
+            result.addError("password", "Field cannot be empty");
+        } 
+        //...
+        
+        return result;
     }    
-}
     
+} 
+
 ```
 
 
@@ -221,6 +235,7 @@ class AccountValidator {
 class AccountRepository {
     Account insertAccount(Account account){
         // INSERT INTO accounts(:account_name,:fullname);
+        return convert(accounts);
     }
 }
 ```

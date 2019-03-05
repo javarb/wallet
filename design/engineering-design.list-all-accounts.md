@@ -193,9 +193,8 @@ class AccountService {
             
         if (!result.isValid()){
         	return invalidRequest(result);
-        } else
-          	convertedAccount = convert(accounts);
-            CreateAccountResponse response = accountRepository.insertAccount(convertedAccount);
+        } else            
+            CreateAccountResponse response = accountRepository.insertAccount(accountConverter.convert(account));
         	return validRequest(response);
     }
 }
@@ -215,29 +214,20 @@ class AccountValidator {
         
         if (account.getAccount == ""){
             result.addError("account", "Field cannot be empty");
-            result.valid = false;
         } else if (account.getFullName == "" ) {
             result.addError("fullname", "Field cannot be empty");
-            result.valid = false;
         } else if (account.getPassword == "") {
             result.addError("password", "Field cannot be empty");
-            result.valid = false;
-        } else {
-        	result.valid = true;    
-        }
-        
-        
+        }         
         return result;
     }    
     
 } 
 
 @Component
-class ValidationResult {
-    bool valid;
-    
-    bool isValid(){
-        return valid;
+class ValidationResult extends HashMap<String,String> {        
+    boolean isValid(){
+        return isEmpty();
     }
 }
 

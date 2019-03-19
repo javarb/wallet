@@ -9,9 +9,9 @@ import java.util.List;
 public class AccountService {
 
     ListAccountsResponse listAccounts(){
-        ListAccountsResponse accountList = new ListAccountsResponse();
+        final ListAccountsResponse accountList = new ListAccountsResponse();
         for (int i = 0; i < 10; i++){
-            Account account = new Account();
+            final Account account = new Account();
             account.setId(Long.valueOf(i));
             account.setAccount("user_" + i);
             account.setFullName("Test User " +i);

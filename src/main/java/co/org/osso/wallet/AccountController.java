@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/wallet")
 public class AccountController {
 
-    private final accountService AccountService;
+    private final AccountService accountService;
 
     public AccountController(AccountService accountService){
         this.accountService = accountService;

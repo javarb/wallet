@@ -21,10 +21,10 @@ Database is provisioned using `docker-compose`. For that, following steps must b
 
    
 
-3. Deploy (here we are in base dir)
+3. Deploy
 
    ```bash
-   $ docker-compose -f provision/mariadb.yml up
+   $ docker-compose -f docker-compose.yml up
    ```
 
    

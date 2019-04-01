@@ -29,6 +29,3 @@ HELP.md
 ### VS Code ###
 .vscode/
 
-## Provisioning secret files
-/provision/secrets/
-

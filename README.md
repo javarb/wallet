@@ -1,7 +1,7 @@
 # Wallet Application 
 
 
-## Database deploy
+## Running the database
 
 Database is provisioned using `docker-compose`. For that, following steps must be accomplished:
 

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountService {
 
-    ListAccountsResponse listAccounts(){
+    ListAccountsResponse listAccounts() {
         final ListAccountsResponse accountList = new ListAccountsResponse();
         for (int i = 0; i < 10; i++) {
             final Account account = new Account();

@@ -6,4 +6,17 @@ services:
     image: mariadb
     restart: always
     environment:
+      MYSQL_DATABASE: "wallet"
+      MYSQL_USER: "wallet"
+      MYSQL_PASSWORD: "${MYSQL_PASSWD}"
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWD}"
+    ports:
+      # host:container
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - wallet:/var/lib/mysql
+
+volumes:
+  wallet:

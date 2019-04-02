@@ -26,10 +26,10 @@ Following steps must be accomplished:
 
 ## Database connectivity - CLI
 
-We're going to connect to our database from inside the container, so we need first to access the container self. We use container's name (which in this case is `provision_db_1`) to establish connection:
+We're going to connect to our database from inside the container, so we need first to access the container self. We use container's name (which in this case is `wallet_db_1`) to establish connection:
 
 ```bash
-$ docker exec -it provision_db_1 bash
+$ docker exec -it wallet_db_1 bash
 ```
 
 And run corresponding connection command:

@@ -39,3 +39,10 @@ root@1c109035d7e1:/# mysql -u wallet
 ```
 
 **NOTE:** Same instructions apply to access using MySQL root user and password specified in `$MYSQL_ROOT_PASSWD` environment variable.
+
+## Running linting
+
+This project uses [Checkstyle](https://github.com/checkstyle/checkstyle) to run code standard checks.
+To run these checks locally use `./gradlew checkstyle`.
+To only run these checks against `src/main/java` use `./gradlew checkstyleMain`.
+To only run these checks against `src/test/java` use `./gradlew checkstyleTest`.

@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'checkstyle'
 
 group = 'co.org.osso'
 version = '0.0.1-SNAPSHOT'
@@ -13,8 +14,17 @@ repositories {
 	mavenCentral()
 }
 
+checkstyle {
+	toolVersion = "8.16"
+	configFile = new File(rootDir, "checkstyle.xml")
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+task checkstyle {
+  dependsOn(checkstyleMain, checkstyleTest)
 }

@@ -3,3 +3,5 @@ jdk:
   - oraclejdk8
 script:
   - ./gradlew test
+  - ./gradlew checkstyleMain
+  - ./gradlew checkstyleTest

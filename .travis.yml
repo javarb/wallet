@@ -1,5 +1,5 @@
-services: 
-  - docker
+addons:
+  mariadb: '10.3' 
 language: java
 jdk:
   - oraclejdk8

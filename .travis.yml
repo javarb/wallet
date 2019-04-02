@@ -4,6 +4,6 @@ language: java
 jdk:
   - oraclejdk8
 script:
-  - ./gradlew test
+  - ./gradlew test --info --stacktrace
   - ./gradlew checkstyleMain
   - ./gradlew checkstyleTest

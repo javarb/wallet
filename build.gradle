@@ -26,6 +26,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-task check {
+task checkstyle {
   dependsOn(checkstyleMain, checkstyleTest)
 }

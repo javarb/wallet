@@ -7,9 +7,3 @@ CREATE TABLE IF NOT EXISTS account (
 	PRIMARY KEY (id),
 	INDEX (id)
 );
-
--- Some test data
-INSERT INTO account(account_name,fullname)
-VALUES	('user1', 'Juan'),
-	('user2', 'Pedro'),
- 	('user3', 'Pablo');

@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class WalletApplicationTests {
+public class WalletApplicationServiceTests {
 
     private AccountService AccountServiceTarget = new AccountService();
 

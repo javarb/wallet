@@ -1,23 +1,18 @@
 package co.org.osso.wallet;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import static org.junit.Assert.assertEquals;
+
 public class WalletApplicationControllerTests {
 
     private AccountController accountController;
     private AccountService accountService;
 
     @Before
-    public void config(){
+    public void config() {
         accountService = Mockito.mock(AccountService.class);
         accountController = new AccountController(accountService);
     }
@@ -34,8 +29,9 @@ public class WalletApplicationControllerTests {
         Mockito.when(accountService.listAccounts()).thenReturn(accountList);
         ListAccountsResponse accountsResponse = accountController.listAccounts();
 
-        Assert.assertEquals(accountsResponse.getData().get(0).getId(),Long.valueOf(1));
-        Assert.assertEquals(accountsResponse.getData().get(0).getAccount(),"test_1");
-        Assert.assertEquals(accountsResponse.getData().get(0).getFullName(),"Fullname Test");
+        Account actual = accountsResponse.getData().get(0);
+        assertEquals(Long.valueOf(1), actual.getId());
+        assertEquals("test_1", actual.getAccount());
+        assertEquals("Fullname Test", actual.getFullName());
     }
 }

@@ -6,7 +6,7 @@ import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 
-public class WalletApplicationControllerTests {
+public class AccountControllerTests {
 
     private AccountController accountController;
     private AccountService accountService;
